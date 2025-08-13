@@ -1,0 +1,196 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* User-defined Palette */
+    --background: 36 33% 95%; /* #f8f5f0 */
+    --foreground: 20 14.3% 4.1%; /* Default dark text, good contrast */
+
+    --primary: 145 49% 25%; /* #205D37 */
+    --primary-foreground: 36 33% 98%; /* Almost white, for text on primary elements */
+
+    --accent: 95 52% 50%; /* #6CBF3E */
+    --accent-foreground: 0 0% 100%; /* White text for contrast on accent */
+    
+    /* Derived & Harmonized Palette */
+    --card: 0 0% 100%; /* White cards */
+    --card-foreground: 20 14.3% 4.1%;
+
+    --popover: 0 0% 100%; /* White popovers */
+    --popover-foreground: 20 14.3% 4.1%;
+
+    --secondary: 145 30% 90%; /* Light, desaturated primary */
+    --secondary-foreground: 145 49% 25%; /* Primary color for text on light secondary */
+
+    --muted: 145 20% 93%; /* Lighter, more desaturated primary */
+    --muted-foreground: 145 30% 50%; /* Darker muted green text */
+
+    --destructive: 0 84.2% 60.2%; /* Standard red for destructive actions */
+    --destructive-foreground: 0 0% 100%; /* White text on destructive */
+
+    --border: 145 25% 88%; /* Subtle green-tinted border */
+    --input: 145 25% 88%; /* Matching input border */
+    --ring: 145 49% 45%; /* Brighter primary for focus rings */
+
+    --radius: 0.5rem;
+
+    /* Sidebar Palette - Light Mode */
+    --sidebar-background: 145 30% 97%; /* Very light green, almost off-white */
+    --sidebar-foreground: 145 40% 20%; /* Dark green text */
+    --sidebar-primary: 145 49% 25%;    /* Main primary for active items */
+    --sidebar-primary-foreground: 36 33% 98%; /* Light text on sidebar primary */
+    --sidebar-accent: 95 52% 50%;       /* Main accent */
+    --sidebar-accent-foreground: 0 0% 100%; /* White text */
+    --sidebar-border: 145 25% 90%;      /* Subtle sidebar border */
+    --sidebar-ring: 145 49% 45%;        /* Brighter primary for ring */
+  }
+
+  .dark {
+    /* User-defined Palette - Dark Mode Adaptation */
+    --background: 145 15% 10%; /* Very dark desaturated green */
+    --foreground: 36 33% 85%;  /* Light off-white text */
+
+    --primary: 145 49% 55%;    /* Brighter green for dark mode primary */
+    --primary-foreground: 145 15% 10%; /* Dark background color for text on dark primary */
+
+    --accent: 95 52% 60%;       /* Brighter accent green for dark mode */
+    --accent-foreground: 0 0% 0%; /* Black text for contrast on brighter accent */
+
+    /* Derived & Harmonized Palette - Dark Mode */
+    --card: 145 15% 13%;        /* Slightly lighter than dark background */
+    --card-foreground: 36 33% 85%;
+
+    --popover: 145 15% 13%;
+    --popover-foreground: 36 33% 85%;
+
+    --secondary: 145 15% 20%;   /* Darker muted green */
+    --secondary-foreground: 36 33% 85%; /* Light text on dark secondary */
+
+    --muted: 145 15% 18%;
+    --muted-foreground: 145 20% 60%; /* Lighter muted green text */
+
+    --destructive: 0 70% 50%; /* Adjusted red for dark mode */
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 145 15% 20%;      /* Subtle dark border */
+    --input: 145 15% 20%;
+    --ring: 145 49% 65%;        /* Lighter primary for focus rings in dark mode */
+
+    /* Sidebar Palette - Dark Mode */
+    --sidebar-background: 145 18% 8%;  /* Even darker green for sidebar */
+    --sidebar-foreground: 36 33% 75%;   /* Lighter text */
+    --sidebar-primary: 145 49% 55%;     /* Brighter primary */
+    --sidebar-primary-foreground: 145 15% 10%; /* Dark text */
+    --sidebar-accent: 95 52% 60%;        /* Brighter accent */
+    --sidebar-accent-foreground: 0 0% 0%;  /* Black text */
+    --sidebar-border: 145 15% 18%;       /* Subtle dark sidebar border */
+    --sidebar-ring: 145 49% 65%;         /* Lighter primary for ring */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased font-sans; /* Ensure font-sans (Inter) is default */
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif tracking-tight; /* Ensure font-serif (Montserrat) is used for headings */
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .text-pretty {
+    text-wrap: pretty;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply backdrop-blur-md bg-white/40 dark:bg-black/30 border border-white/20 dark:border-white/10 shadow-sm;
+  }
+
+  .text-wrap-balance {
+    text-wrap: balance;
+  }
+
+  .scroll-reveal {
+    @apply opacity-0 translate-y-4 transition-all duration-700;
+  }
+  
+  .scroll-reveal.revealed {
+    @apply opacity-100 translate-y-0;
+  }
+
+  .mask-container {
+    @apply overflow-hidden;
+  }
+
+  .mask-content {
+    @apply translate-y-full opacity-0;
+  }
+
+  .reveal-text {
+    animation: reveal 1s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+  }
+
+  .stagger-1 {
+    animation-delay: 0.1s;
+  }
+
+  .stagger-2 {
+    animation-delay: 0.2s;
+  }
+
+  .stagger-3 {
+    animation-delay: 0.3s;
+  }
+}
+
+@keyframes reveal {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-muted; /* Use a theme color for scrollbar */
+  border-radius: 4px;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  @apply bg-muted; /* Use a theme color for scrollbar */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
