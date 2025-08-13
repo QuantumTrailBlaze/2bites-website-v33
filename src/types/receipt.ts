@@ -22,6 +22,19 @@ export interface NutritionalInfo {
 }
 
 /**
+ * @interface TagItem
+ * @description Represents a single tag item with text and icon information.
+ * @property {string} text - The display text for the tag.
+ * @property {string} iconColorClass - Tailwind CSS class for the icon color.
+ * @property {string} iconIdentifier - Identifier for the icon.
+ */
+export interface TagItem {
+  text: string;
+  iconColorClass: string;
+  iconIdentifier: string;
+}
+
+/**
  * @interface Receipt
  * @description Represents a food receipt or recipe.
  * @property {string} id - Unique identifier for the receipt (UUID).
@@ -34,12 +47,17 @@ export interface NutritionalInfo {
  * @property {string | null} image_alt_text - Alt text for the receipt's image.
  * @property {string | null} prep_time - Preparation time for the receipt.
  * @property {string | null} calories - Calorie information as a string.
- * @property {any[]} ingredients - JSONB array of ingredients.
- * @property {any[]} benefits - JSONB array of benefits.
+ * @property {string[]} ingredients - JSONB array of ingredients (array of strings).
+ * @property {string[]} benefits - JSONB array of benefits (array of strings).
  * @property {string | null} how_to_prepare - Instructions on how to prepare the receipt.
  * @property {string | null} quote - A quote related to the receipt.
- * @property {string[] | null} tags - JSONB array of tags associated with the receipt.
+ * @property {TagItem[] | null} tags - JSONB array of tags associated with the receipt (array of TagItem objects).
  * @property {string | null} category - Category of the receipt.
+ * @property {string | null} seo_title - SEO title for the receipt.
+ * @property {string | null} seo_description - SEO description for the receipt.
+ * @property {string | null} seo_keywords - SEO keywords for the receipt.
+ * @property {string | null} created_at - Timestamp when the receipt was created.
+ * @property {string | null} updated_at - Timestamp when the receipt was last updated.
  * @property {NutritionalInfo | null} nutritional_info - Nested nutritional information object, can be null.
  */
 export interface Receipt {
@@ -53,11 +71,16 @@ export interface Receipt {
   image_alt_text: string | null;
   prep_time: string | null;
   calories: string | null;
-  ingredients: any[]; // Assuming jsonb can be an array of any type, adjust if more specific structure is known
-  benefits: any[];    // Assuming jsonb can be an array of any type, adjust if more specific structure is known
+  ingredients: string[];
+  benefits: string[];
   how_to_prepare: string | null;
   quote: string | null;
-  tags: string[] | null; // Assuming jsonb is an array of strings for tags
+  tags: TagItem[] | null;
   category: string | null;
+  seo_title: string | null;
+  seo_description: string | null;
+  seo_keywords: string | null;
+  created_at: string | null;
+  updated_at: string | null;
   nutritional_info: NutritionalInfo | null;
 }
